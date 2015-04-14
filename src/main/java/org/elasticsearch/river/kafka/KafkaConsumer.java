@@ -47,7 +47,7 @@ public class KafkaConsumer {
         consumerConnector = kafka.consumer.Consumer.createJavaConsumerConnector(createConsumerConfig(riverConfig));
 
         final Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
-        topicCountMap.put(riverConfig.getTopic(), AMOUNT_OF_THREADS_PER_CONSUMER);
+        topicCountMap.put(riverConfig.getTopic(), riverConfig.getTopicPartition());
 
         final Map<String, List<KafkaStream<byte[], byte[]>>> consumerStreams =
                 consumerConnector.createMessageStreams(topicCountMap);
